@@ -1,0 +1,16 @@
+struct node *deleteAlternative(struct node *head)
+{
+    if(head==NULL)
+        return NULL;
+    struct node *p=head;
+    struct node *q=p->link;
+
+    while(p!=NULL && q!=NULL)
+    {
+        p->link=q->link;
+        free(q);
+        p=p->link;
+        if(p!=NULL)
+            q=p->link;
+    }
+    return head;
