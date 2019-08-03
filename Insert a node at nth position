@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+    int data;
+    node *next;
+};
+node *head=NULL;
+
+void insert(int x,int position)
+{
+    node *temp1=new node;
+    temp1->data=x;
+    temp1->next=NULL;
+    if(position==1)
+    {
+        
+        temp1->next=head;//right side link
+        head=temp1;//left side link
+        return;
+    }
+    else
+    {
+        node *temp2=head;
+        for(int i=1;i<=position-1;i++)
+        {
+            temp1->next=temp2->next;//right side link
+            temp2->next=temp1;//left side link
+            return;
+        }
+    }
+}
+void print()
+{
+    node *temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data;
+        temp=temp->next;
+        
+    }
+    cout<<"\n";
+
+
+}
+
+int main()
+{   
+    insert(1,1);
+    insert(3,2);
+    insert(7,3);
+    insert(4,2);
+    print();
+return 0;
+}
