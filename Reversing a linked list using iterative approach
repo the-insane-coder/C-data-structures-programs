@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+    int data;
+    node *next;
+};
+node *head=NULL;
+
+void insert(int x,int position)
+{
+    node *temp1=new node;
+    temp1->data=x;
+    temp1->next=NULL;
+    if(position==1)
+    {
+        
+        temp1->next=head;//right side link
+        head=temp1;//left side link
+        return;
+    }
+    else
+    {
+        node *temp2=head;
+        for(int i=0;i<position-2;i++)
+        {
+            temp2=temp2->next;
+        }
+        temp1->next=temp2->next;
+        temp2->next=temp1;
+    }
+}
+void print()
+{
+    node *temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data;
+        temp=temp->next;
+        
+    }
+    cout<<"\n";
+
+
+}
+void reverse_list_iterative_approach()
+{
+    node *current=head;
+    node *prev=NULL;//because when we are at the first node we have to point to the null before moving on to the next node.
+    node *next;
+    if(head==NULL)
+    {
+        cout<<"Linked list is empty and can't be reversed";
+        return;
+    }
+    while(current!=NULL)
+    {   
+        next=current->next;//to store the address of the next node to move the current pointer to the next node.
+        current->next=prev;//before moving to next node we have to build the link to the previous node.
+        prev=current;//storing the address of the current node as it is going to be previous node for next iteration.
+        current=next;//moving current pointer to the next node.
+    }
+    head=prev;//when loop will break current will be NULL and prev will be pointing to the last node so now adjust the link to head.
+}
+
+int main()
+{   
+    insert(1,1);
+    insert(3,2);
+    insert(4,3);
+    insert(5,4);
+    insert(6,5);
+    insert(8,3);
+    cout<<"Linked list before reversing \n";
+    print();
+    reverse_list_iterative_approach();
+    cout<<"Linked list after reversing it \n";
+    print();
+return 0;
+}
+
