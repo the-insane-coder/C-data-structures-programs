@@ -1,0 +1,26 @@
+int getmiddle()
+{
+    int length,middle_index,middle_data;
+    length=0;
+    node *temp=head;
+    node *traverse=head;
+    while(temp!=NULL)
+    {   
+        length++;
+        temp=temp->next;
+    }
+    if(length%2==0)
+    {
+        middle_index=(length/2)+1;
+    }
+    else
+    {
+        middle_index=(length+1)/2;
+    }
+    for(int i=0;i<middle_index-1;i++)
+    {
+        traverse=traverse->next;
+    }
+    middle_data=traverse->data;
+    return middle_data;
+}
