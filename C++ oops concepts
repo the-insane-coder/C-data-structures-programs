@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+class human
+{
+  private:
+  string name;
+  int age;
+  public:
+  human(string iname,int iage)
+  {
+      name=iname;
+      age=iage;
+  }
+  void tellme()
+  {
+      cout<<name<<endl<<age<<endl;
+  }
+  friend void display(human man);//here we are declaring a friend function which can access the private members of this class...
+};
+void display(human man)//defining a friend function outside the class...
+{
+    cout<<man.name<<endl<<man.age<<endl;
+}
+int main()
+{
+    human pranjal("Pranjal",19);
+    display(pranjal);
+return 0;
+}
